@@ -1,4 +1,7 @@
+
 // rutas/usuarios.js
+
+//JWT
 import {
   createUsuario,
   loginUsuario,

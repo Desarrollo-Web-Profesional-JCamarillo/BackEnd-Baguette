@@ -1,4 +1,6 @@
 // rutas/pedidos.js
+//JWT
+
 import {
   creaPedido,
   listaAllPedidos,
