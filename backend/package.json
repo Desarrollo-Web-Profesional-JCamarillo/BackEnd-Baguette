@@ -1,0 +1,25 @@
+{
+  "name": "backend_pedidos",
+  "version": "1.0.0",
+  "description": "Backend para el sistema de pedidos de Venta de Leños",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "eslint src",
+    "prepare": "husky install"
+  },
+  "jest": {
+    "globalSetup": "./src/test/globalSetup.js",
+    "globalTeardown": "./src/test/globalTeardown.js",
+    "setupFilesAfterFramework": [
+      "./src/test/setupFileAfterEnv.js"
+    ],
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
