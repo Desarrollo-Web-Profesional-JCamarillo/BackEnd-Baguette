@@ -1,3 +1,5 @@
+//usuarios.js
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Usuario } from "../bd/modelos/usuario.js";
