@@ -14,5 +14,6 @@ try {
   app.listen(PORT);
   console.info(`Servidor Express ejecutandose sobre http://localhost:${PORT}`);
 } catch (err) {
-  console.error("Error conecteando a la Base de Datos:", err);
+  console.error("Error conectando a la Base de Datos:", err);
+  process.exit(1);
 }

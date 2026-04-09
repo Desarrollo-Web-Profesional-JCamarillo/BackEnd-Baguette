@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Backend Node.js
+  app-logic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: baggete-backend
+    restart: unless-stopped
+    expose:
+      - "3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/baggete
+    networks:
+      - internal-network
+    depends_on:
+      - mongodb
+
+  # MongoDB
+  mongodb:
+    image: mongo:7
+    container_name: baggete-mongodb
+    restart: unless-stopped
+    expose:
+      - "27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - internal-network
+
+  # Nginx con HTTPS
+  web-server:
+    image: nginx:alpine
+    container_name: baggete-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    networks:
+      - internal-network
+    depends_on:
+      - app-logic
+
+networks:
+  internal-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
